@@ -243,7 +243,7 @@ function processNextOrder() {
         return;
     }
     if (order.quantity <= product.quantity) {
-        product.quantity -= order.quantity;
+        product.quantity = product.quantity - order.quantity;
         dispatchStack.push(order);
         console.log(`Order ${order.orderId} processed successfully.`);
     }else {
@@ -282,7 +282,7 @@ function undoLastDispatch() {
         }
     }
     if (product !== null) {
-        product.quantity += order.quantity;
+        product.quantity = product.quantity + order.quantity;
         orderQueue.push(order);
         console.log("Last dispatch undone.");
     }
